@@ -1,0 +1,27 @@
+<section class="my-3 container">
+  <div class="container">
+    <div class="main-app p-4">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-3xl font-medium">Angular latest Task Manager</h1>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-md-12">
+          <!-- add todo component -->
+          <div class="add-todo-component"></div>
+          <!-- todos component -->
+          <div class="todos-component my-4">
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"
+            >
+              <div *ngFor="let todo of todos">
+                <app-todo-item [todo]="todo"></app-todo-item>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
