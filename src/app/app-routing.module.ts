@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/todos', pathMatch: 'full' },
   { path: 'todos', component: TodosComponent },
   { path: 'add-task', component: AddTodoComponent },
+  { path: 'edit/:id', component: AddTodoComponent },
   { path: 'about', component: AboutComponent },
   { path: '**', redirectTo: '/todos' },
 ];

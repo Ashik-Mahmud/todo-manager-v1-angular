@@ -1,4 +1,10 @@
 <div class="container p-5">
+  <h3 class="text-xl font-bold my-3">
+    <span *ngIf="isEdit" class="text-3xl cursor-pointer" (click)="goBack()">
+      ⬅️</span
+    >
+    {{ isEdit ? "Edit Todo" : "Add Todo" }}
+  </h3>
   <form action="" (ngSubmit)="onSubmit()">
     <div class="my-1">
       <label for="title">Title</label>
@@ -23,7 +29,7 @@
     </div>
     <div class="my-1">
       <button class="btn btn-primary p-2 px-5 bg-blue-200 text-blue-600">
-        Add Todo
+        {{ isEdit ? " Update Todo " : " Add Todo" }}
       </button>
     </div>
   </form>

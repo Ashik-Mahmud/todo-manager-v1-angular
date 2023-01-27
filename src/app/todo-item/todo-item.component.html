@@ -25,11 +25,22 @@
       >
         {{ todo.completed ? "Undone" : "Done" }}
       </button>
-      <button
+      <a
+        *ngIf="!todo.completed; else elseBlock"
+        routerLink="/edit/{{ todo.id }}"
         class="btn btn-primary bg-green-50 text-green-500 font-bold p-1 px-2"
       >
         Edit
-      </button>
+      </a>
+      <ng-template #elseBlock>
+        <button
+          class="btn btn-primary bg-green-50 text-green-500 font-bold p-1 px-2 opacity-70"
+          title="You can't edit a completed todo"
+          disabled
+        >
+          Edit
+        </button>
+      </ng-template>
       <button
         class="btn btn-danger bg-red-50 text-red-600 p-1 px-2"
         (click)="onDeleteTodo(todo)"
