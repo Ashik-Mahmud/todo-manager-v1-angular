@@ -1,11 +1,30 @@
 <div>
   <div class="shadow-sm p-4 border rounded-md">
-    <h3 class="title text-xl font-semibold">{{ todo.title }}</h3>
-    <p class="description text-sm my-1 text-gray-500">
+    <h3
+      class="title text-xl font-semibold {{
+        todo?.completed
+          ? 'opacity-50 pointer-events-none line-through '
+          : ' opacity-100 '
+      }}"
+    >
+      {{ todo.title }}
+    </h3>
+    <p
+      class="description text-sm my-1 text-gray-500 {{
+        todo?.completed
+          ? 'opacity-50 pointer-events-none line-through '
+          : ' opacity-100 '
+      }}"
+    >
       {{ todo.description }}
     </p>
     <div class="action text-xs flex flex-wrap gap-1 items-center mt-4">
-      <button class="bg-blue-50 text-blue-500 p-1 rounded-sm">Done</button>
+      <button
+        (click)="onDoneTodo(todo)"
+        class="bg-blue-50 text-blue-500 p-1 rounded-sm"
+      >
+        {{ todo.completed ? "Undone" : "Done" }}
+      </button>
       <button
         class="btn btn-primary bg-green-50 text-green-500 font-bold p-1 px-2"
       >

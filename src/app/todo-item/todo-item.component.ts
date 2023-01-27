@@ -9,6 +9,7 @@ import { TodoInterface } from 'src/interfaces/TodoInterface';
 export class TodoItemComponent {
   @Input() todo: TodoInterface | any;
   @Output() deleteTodo: EventEmitter<TodoInterface> = new EventEmitter();
+  @Output() doneTodo: EventEmitter<TodoInterface> = new EventEmitter();
 
   onDeleteTodo(todo: TodoInterface) {
     const isConfirm = confirm('Are you sure?');
@@ -18,5 +19,19 @@ export class TodoItemComponent {
     const newTodos = dbTodos.filter((t: TodoInterface) => t.id !== todo.id);
     localStorage.setItem('todos', JSON.stringify(newTodos));
   }
+
+  // for done todo
+  onDoneTodo(todo: TodoInterface) {
+    const dbTodos = JSON.parse(localStorage.getItem('todos') || '[]');
+    const newTodos = dbTodos.map((t: TodoInterface) => {
+      if (t.id === todo.id) {
+        t.completed = !t.completed;
+      }
+      return t;
+    });
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+    this.doneTodo.emit(todo);
+  }
+
   constructor() {}
 }

@@ -18,4 +18,13 @@ export class TodosComponent {
   todoDelete(todo: TodoInterface | any) {
     this.todos = this.todos?.filter((t) => t.id !== todo.id);
   }
+
+  todoDone(todo: TodoInterface | any) {
+    this.todos = this.todos?.map((t) => {
+      if (t.id === todo.id) {
+        t.completed = !t.completed;
+      }
+      return t;
+    });
+  }
 }
