@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TodoInterface } from 'src/interfaces/TodoInterface';
 
 @Component({
@@ -14,5 +14,8 @@ export class TodosComponent {
     this.todos = [];
     const todosData = JSON.parse(localStorage.getItem('todos') || '[]');
     this.todos = todosData;
+  }
+  todoDelete(todo: TodoInterface | any) {
+    this.todos = this.todos?.filter((t) => t.id !== todo.id);
   }
 }

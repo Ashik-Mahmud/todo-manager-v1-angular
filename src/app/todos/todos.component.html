@@ -14,12 +14,22 @@
           <div class="todos-component my-4">
             <div
               class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3"
+              *ngIf="this.todos.length > 0; else elseBlock"
             >
               <div *ngFor="let todo of todos">
-                <app-todo-item [todo]="todo"></app-todo-item>
+                <app-todo-item
+                  (deleteTodo)="todoDelete($event)"
+                  [todo]="todo"
+                ></app-todo-item>
               </div>
             </div>
           </div>
+          <ng-template #elseBlock>
+            <div class="text-center py-10">
+              <h1 class="text-2xl font-medium">No todos found</h1>
+              <p class="text-gray-500">Please add a todo to get started</p>
+            </div>
+          </ng-template>
         </div>
       </div>
     </div>
